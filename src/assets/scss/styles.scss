@@ -1,0 +1,90 @@
+$black: #1a2421;
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+}
+
+.player-container{
+    width: 100vw;
+    height: 100vh;
+    background-color: $black;
+
+
+    .content-container{
+        height: calc(100vh - 95px);
+        background-color: red;
+        display: flex;
+        flex-flow: row;
+
+        .lateral-container{
+            width: 20vw;
+            height: 100%;
+        }
+
+        .data-container{
+            width: 80vw;
+            background-color: gray;
+            height: 100%;
+        }
+
+    }
+
+    .reproductor-container{
+        height: 95px;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-flow: column;
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+
+        #Reproductor{
+            visibility: hidden;
+            position: absolute;
+            top: -100px;
+            left: -100px;
+        }
+
+        .control-box{
+            width: 40%;
+
+            .buttons-container{
+                width: 100%;
+                display: flex;
+                flex-flow: row;
+                justify-content: center;
+                align-content: center;
+
+                i{
+                    color: white;
+                    font-size: 35px;
+                    cursor: pointer; 
+                    margin-left: 10px;
+                    margin-right: 10px;
+                }
+            }
+
+            input[type="range"]{
+                width: 100%;
+                margin: 0;
+            }
+
+            .range-time-container{
+                label{
+                    color: white;
+
+                    &.end{
+                        float: right;
+                    }
+                }
+            }
+        }
+
+    }
+
+}
