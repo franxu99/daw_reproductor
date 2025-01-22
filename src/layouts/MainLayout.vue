@@ -20,7 +20,12 @@
                 Your browser does not support the audio element.
             </audio> 
 
+            <div class="sound-data-container">
+                <label>{{ soundDataStore.soundName }}</label>
+            </div>
+
             <div class="control-box">
+               
                 <div class="buttons-container">
                     <i class="bi bi-skip-backward"></i>
                     <i :class="currentButtonIcon" @click="toggleReproduction"></i>
@@ -40,7 +45,11 @@
 </template>
 
 <script setup>
-    import { useTemplateRef, ref, onMounted } from 'vue'
+    import { useTemplateRef, ref, onMounted } from 'vue';
+    import { useSoundDataStore } from '../stores/soundData';
+
+
+    const soundDataStore = useSoundDataStore();
 
     let currentButtonIcon = ref("bi bi-play-circle");
     const reproductor = useTemplateRef("reproductor");

@@ -43,6 +43,18 @@ body{
         align-items: center;
         justify-content: center;
 
+        .sound-data-container{
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+
+            *{
+                color: white;
+            }
+
+        }
+
         #Reproductor{
             visibility: hidden;
             position: absolute;
