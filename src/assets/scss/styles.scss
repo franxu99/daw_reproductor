@@ -16,18 +16,18 @@ body{
 
     .content-container{
         height: calc(100vh - 95px);
-        background-color: red;
         display: flex;
         flex-flow: row;
 
         .lateral-container{
             width: 20vw;
             height: 100%;
+            background-color: red;
+
         }
 
         .data-container{
             width: 80vw;
-            background-color: gray;
             height: 100%;
         }
 
@@ -100,3 +100,5 @@ body{
     }
 
 }
+
+@import "./mainPlayer.scss";

@@ -16,7 +16,7 @@
 
         <div class="reproductor-container">
             <audio ref="reproductor" id="Reproductor" controls>
-                <source src="https://cdn.freesound.org/previews/6/6465_2518-hq.mp3" type="audio/mpeg">
+                <source :src="soundDataStore.soundUrl" type="audio/mpeg">
                 Your browser does not support the audio element.
             </audio> 
 
@@ -32,7 +32,7 @@
                     <i class="bi bi-skip-forward"></i>
                 </div>
                 <div class="range-container">
-                    <input @input="changeAudioTime" type="range" :value="songCurrentTime" min="0" :max="songFullTime">
+                    <input :disabled="soundDataStore.soundUrl == ''" @input="changeAudioTime" type="range" :value="songCurrentTime" min="0" :max="songFullTime">
                 </div>
                 <div class="range-time-container">
                     <label class="start">{{ currentTime }}</label>
@@ -45,21 +45,28 @@
 </template>
 
 <script setup>
-    import { useTemplateRef, ref, onMounted } from 'vue';
+    import { useTemplateRef, ref, onMounted, watch } from 'vue';
     import { useSoundDataStore } from '../stores/soundData';
-
 
     const soundDataStore = useSoundDataStore();
 
     let currentButtonIcon = ref("bi bi-play-circle");
     const reproductor = useTemplateRef("reproductor");
 
+    let songsData = ref({});
     let currentTime = ref("0:00");
     let endTime = ref("0:00");
     let songCurrentTime = ref(0);
     let songFullTime = ref(0);
 
-    onMounted(() => {
+
+    watch(soundDataStore, () => {
+        reproductor.value.load();
+        reproductor.value.play();
+        currentButtonIcon.value = "bi bi-pause-circle";
+    });
+
+    onMounted(async () => {
         reproductor.value.addEventListener('loadedmetadata', () => {
             let duration = Math.floor(reproductor.value.duration);
 
@@ -74,6 +81,7 @@
             currentTime.value = "0:" + duration;
             songCurrentTime.value = duration;
         });
+
     });
 
     const changeAudioTime = (e) => {
