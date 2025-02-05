@@ -9,8 +9,8 @@ export default {
         return await fetch(url);
     },
 
-    async getSounds(){
-        let response = (await this.get(this.BASE_URL + "/search/text/?search=")).json();   
+    async getSounds(searchQuery = ""){
+        let response = (await this.get(this.BASE_URL + "/search/text/?query=" + searchQuery)).json();   
         
         return response;
     },

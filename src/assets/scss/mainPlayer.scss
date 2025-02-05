@@ -8,6 +8,12 @@ $textColor: #dbdbdb;
     padding: 45px;
     overflow-y: scroll;
 
+    .loading-gif-container{
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
     .song-element{
         margin-left: auto;
         margin-right: auto;
@@ -58,7 +64,7 @@ $textColor: #dbdbdb;
             display: flex;
             justify-content: center;
             align-content: center;
-            flex-flow: row;
+            flex-flow: wrap;
 
             i {
                 font-size: 20px;

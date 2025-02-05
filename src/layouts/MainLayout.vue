@@ -5,6 +5,10 @@
 
         <div class="content-container">
             <div class="lateral-container">
+                <div class="search-box-container">
+                    <input v-model="searchDataStore.searchText" placeholder="Buscar" type="text" name="searchQuery" class="search-box">
+                    <i class="bi bi-search"></i>
+                </div>
                 <nav>
 
                 </nav>
@@ -47,7 +51,9 @@
 <script setup>
     import { useTemplateRef, ref, onMounted, watch } from 'vue';
     import { useSoundDataStore } from '../stores/soundData';
+    import { useSearchStore } from '@/stores/search';
 
+    const searchDataStore = useSearchStore();
     const soundDataStore = useSoundDataStore();
 
     let currentButtonIcon = ref("bi bi-play-circle");
