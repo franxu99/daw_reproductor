@@ -5,6 +5,10 @@
 
         <div class="content-container">
             <div class="lateral-container">
+                <div class="search-box-container">
+                    <input v-model="searchDataStore.searchText" placeholder="Buscar" type="text" name="searchQuery" class="search-box">
+                    <i class="bi bi-search"></i>
+                </div>
                 <nav>
 
                 </nav>
@@ -47,13 +51,14 @@
 <script setup>
     import { useTemplateRef, ref, onMounted, watch } from 'vue';
     import { useSoundDataStore } from '../stores/soundData';
+    import { useSearchStore } from '@/stores/search';
 
+    const searchDataStore = useSearchStore();
     const soundDataStore = useSoundDataStore();
 
     let currentButtonIcon = ref("bi bi-play-circle");
     const reproductor = useTemplateRef("reproductor");
 
-    let songsData = ref({});
     let currentTime = ref("0:00");
     let endTime = ref("0:00");
     let songCurrentTime = ref(0);
@@ -65,6 +70,7 @@
         reproductor.value.play();
         currentButtonIcon.value = "bi bi-pause-circle";
     });
+
 
     onMounted(async () => {
         reproductor.value.addEventListener('loadedmetadata', () => {
@@ -84,6 +90,7 @@
 
     });
 
+
     const changeAudioTime = (e) => {
         if(e.target.value == Math.floor(reproductor.value.currentTime)) return;
         
@@ -91,6 +98,7 @@
         currentTime.value = "0:" + Math.floor(reproductor.value.currentTime);
     }
 
+    
     const toggleReproduction = () => {
         if(reproductor.value.paused){
             currentButtonIcon.value = "bi bi-pause-circle";
