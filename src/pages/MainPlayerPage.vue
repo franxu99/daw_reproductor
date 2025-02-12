@@ -1,6 +1,7 @@
 <template>
     <div class="main-player-container">
         <div v-show="searchDataStore.loadSearch == true">
+            <label>Hola</label>
 
             <div v-for="(soundData, key) in soundsData" class="song-element">
                 <div class="song-img">
