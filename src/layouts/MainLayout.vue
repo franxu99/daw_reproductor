@@ -59,7 +59,6 @@
     let currentButtonIcon = ref("bi bi-play-circle");
     const reproductor = useTemplateRef("reproductor");
 
-    let songsData = ref({});
     let currentTime = ref("0:00");
     let endTime = ref("0:00");
     let songCurrentTime = ref(0);
@@ -71,6 +70,7 @@
         reproductor.value.play();
         currentButtonIcon.value = "bi bi-pause-circle";
     });
+
 
     onMounted(async () => {
         reproductor.value.addEventListener('loadedmetadata', () => {
@@ -90,6 +90,7 @@
 
     });
 
+
     const changeAudioTime = (e) => {
         if(e.target.value == Math.floor(reproductor.value.currentTime)) return;
         
@@ -97,6 +98,7 @@
         currentTime.value = "0:" + Math.floor(reproductor.value.currentTime);
     }
 
+    
     const toggleReproduction = () => {
         if(reproductor.value.paused){
             currentButtonIcon.value = "bi bi-pause-circle";

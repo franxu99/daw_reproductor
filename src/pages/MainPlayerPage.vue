@@ -1,6 +1,7 @@
 <template>
     <div class="main-player-container">
         <div v-show="searchDataStore.loadSearch == true">
+            <label>Hola</label>
 
             <div v-for="(soundData, key) in soundsData" class="song-element">
                 <div class="song-img">
@@ -34,11 +35,11 @@
 
 <script setup>
 
-    import apiService from '../services/apiService';
     import { onMounted, ref, watch } from 'vue';
     import { useSoundDataStore } from '../stores/soundData';
     import { useSearchStore } from '@/stores/search';
     import loadingComponent from '@/components/loadingComponent.vue';
+    import apiService from '../services/apiService';
 
     const searchDataStore = useSearchStore();
     const soundDataStore = useSoundDataStore();
